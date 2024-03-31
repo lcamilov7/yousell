@@ -1,27 +1,2 @@
 <h2>Añadir producto</h2>
-<%= form_with model: @product do |f| %>
-  <div>
-    <% @product.errors.full_messages.each do |error| %>
-      <p><%= error %></p>
-    <% end %>
-  </div>
-
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-
-  <div>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  </div>
-
-  <div>
-    <%= f.label :price %>
-    <%= f.number_field :price %>
-  </div>
-
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= render 'form' %>

@@ -33,6 +33,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_redirected_to(product_path(Product.last))
+    assert_equal(flash[:notice], 'Producto creado')
   end
 
   test 'should not allow to create a product' do
@@ -46,5 +47,11 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_template('products/new')
     assert_response(:unprocessable_entity)
+  end
+
+  test 'render a form for edit product' do
+    get edit_product_path(products(:ps4))
+    assert_response(:success)
+    assert_select('form', 1)
   end
 end
