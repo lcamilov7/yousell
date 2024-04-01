@@ -4,7 +4,6 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test 'render a list of products' do
     get products_url
     assert_response(:success)
-
     assert_select('.product', 2)
   end
 
@@ -53,5 +52,33 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     get edit_product_path(products(:ps4))
     assert_response(:success)
     assert_select('form', 1)
+  end
+
+  test 'should update a product' do
+    patch product_path(products(:ps4)), params: {
+      product: {
+        price: 160
+      }
+    }
+    assert_redirected_to(product_path(products(:ps4)))
+    assert_equal(flash[:notice], 'Producto actualizado')
+  end
+
+  test 'should not allow to upda a product' do
+    patch product_path(products(:ps4)), params: {
+      product: {
+        title: nil
+      }
+    }
+    assert_template('products/edit')
+    assert_response(:unprocessable_entity)
+  end
+
+  test 'should delete a product' do
+    assert_difference('Product.count', -1) do
+      delete product_path(products(:ps4))
+    end
+    assert_redirected_to(products_path)
+    assert_equal(flash[:notice], 'Producto eliminado')
   end
 end
