@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to(products_path, notice: 'Producto eliminado')
+    redirect_to(products_path, notice: 'Producto eliminado', status: :see_other) # Redirect por defecto envia un 302, y esto no puede ser en el metodo delete, debemos sobreescribirlo SEE OTHER
   end
 
   private
