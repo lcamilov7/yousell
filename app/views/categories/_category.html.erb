@@ -1,0 +1,4 @@
+<div><%= category.name %>
+  <%= link_to 'Edit category', edit_category_path(category) %>
+  <%= link_to 'Delete category', category_path(category), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+</div>

@@ -4,6 +4,13 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test 'render a list of products' do
     get products_url
     assert_response(:success)
+    assert_select('.product', 3)
+    assert_select('.category', 3)
+  end
+
+  test 'render a list of products filtered by category' do
+    get products_url(category_id: categories(:videogames).id)
+    assert_response(:success)
     assert_select('.product', 2)
   end
 
@@ -27,12 +34,13 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
         product: {
           title: 'Nintendo 64',
           description: 'Le faltan los cables',
-          price: 45
+          price: 45,
+          category_id: categories(:videogames).id
         }
       }
     end
     assert_redirected_to(product_path(Product.last))
-    assert_equal(flash[:notice], 'Producto creado')
+    assert_equal(flash[:notice], 'Product created')
   end
 
   test 'should not allow to create a product' do
@@ -61,7 +69,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       }
     }
     assert_redirected_to(product_path(products(:ps4)))
-    assert_equal(flash[:notice], 'Producto actualizado')
+    assert_equal(flash[:notice], 'Product updated')
   end
 
   test 'should not allow to upda a product' do
@@ -79,6 +87,6 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       delete product_path(products(:ps4))
     end
     assert_redirected_to(products_path)
-    assert_equal(flash[:notice], 'Producto eliminado')
+    assert_equal(flash[:notice], 'Product deleted')
   end
 end

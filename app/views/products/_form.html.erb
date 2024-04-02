@@ -14,10 +14,22 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
   </div>
+  
+  <% if @product.new_record? %>
+    <div>
+      <%= f.label :price %>
+      <%= f.number_field :price %>
+    </div>
+  <% end %>
 
   <div>
-    <%= f.label :price %>
-    <%= f.number_field :price %>
+    <%# :category_id es lo que envia a la petición, el select se rellena con Category.order('name ASC'), y el select va enviar el :id pero mostrará el :name %>
+    <%= f.collection_select :category_id, Category.order('name ASC'), :id, :name %>
+  </div>
+
+    <div>
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
   </div>
 
   <div>

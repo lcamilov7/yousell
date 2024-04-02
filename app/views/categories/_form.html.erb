@@ -1,0 +1,16 @@
+<%= form_with model: @category do |f| %>
+  <div>
+    <% @category.errors.full_messages.each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
