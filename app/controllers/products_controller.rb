@@ -3,25 +3,23 @@ class ProductsController < ApplicationController
 
   def index
     @categories = Category.order('name ASC').load_async
-    @products = Product.with_attached_photo # Soluciona error n+1 query
-    @products = @products.where(category_id: params[:category_id]) if params[:category_id].present?
+    # @products = Product.with_attached_photo # Soluciona error n+1 query
+    # @products = @products.where(category_id: params[:category_id]) if params[:category_id].present?
 
-    if params[:min_price].present? && params[:max_price].present?
-      @products = @products.where("price BETWEEN #{params[:min_price]} AND #{params[:max_price]}")
-    elsif params[:min_price].present? && params[:max_price].blank?
-      @products = @products.where("price >= #{params[:min_price]}")
-    elsif params[:min_price].blank? && params[:max_price].present?
-      @products = @products.where("price <= #{params[:max_price]}")
-    end
+    # if params[:min_price].present? && params[:max_price].present?
+    #   @products = @products.where("price BETWEEN #{params[:min_price]} AND #{params[:max_price]}")
+    # elsif params[:min_price].present? && params[:max_price].blank?
+    #   @products = @products.where("price >= #{params[:min_price]}")
+    # elsif params[:min_price].blank? && params[:max_price].present?
+    #   @products = @products.where("price <= #{params[:max_price]}")
+    # end
 
-    @products = @products.global_search(params[:query]) if params[:query].present?
+    # @products = @products.global_search(params[:query]) if params[:query].present?
 
-    order_by = Product::ORDER_BY.fetch(params[:order_by]&.to_sym, Product::ORDER_BY[:newest])
-    @products = @products.order(order_by)
+    # order_by = Product::ORDER_BY.fetch(params[:order_by]&.to_sym, Product::ORDER_BY[:newest])
+    # @products = @products.order(order_by)
 
-    @pagy, @products = pagy_countless(@products, items: 12)
-
-    # @products.load_async
+    @pagy, @products = pagy_countless(FindProducts.new.call(params), items: 12)
   end
 
   def show; end
