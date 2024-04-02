@@ -14,6 +14,12 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_select('.product', 2)
   end
 
+  test 'render a list of products filtered by price' do
+    get products_url(min_price: 140, max_price: 170)
+    assert_response(:success)
+    assert_select('h2', 'PS4 Fat')
+  end
+
   test 'render a detailed product page' do
     get product_url(products(:ps4))
     assert_response(:success)
