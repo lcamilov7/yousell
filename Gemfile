@@ -70,3 +70,4 @@ end
 
 gem 'rails-controller-testing' # Permite test para templates
 gem "pg_search" # Para busquedas de texto de postgreSQL
+gem "pagy", "~> 8.0" # Paginación infinita

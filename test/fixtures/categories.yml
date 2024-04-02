@@ -6,3 +6,21 @@ computers:
 
 clothes:
   name: Clothes
+
+cars:
+  name: Cars
+
+music:
+  name: Music
+
+electronic:
+  name: Electronics
+
+books:
+  name: Books
+
+mobile:
+  name: Mobile
+
+sports:
+  name: Sports

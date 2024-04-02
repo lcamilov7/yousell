@@ -4,14 +4,14 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test 'render a list of products' do
     get products_url
     assert_response(:success)
-    assert_select('.product', 4)
-    assert_select('.category', 3)
+    assert_select('.product', 12)
+    assert_select('.category', 9)
   end
 
   test 'render a list of products filtered by category' do
     get products_url(category_id: categories(:videogames).id)
     assert_response(:success)
-    assert_select('.product', 2)
+    assert_select('.product', 7)
   end
 
   test 'render a list of products filtered by price' do
@@ -29,19 +29,19 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test 'render a list of products filtered by cheap' do
     get products_url(order_by: 'cheap')
     assert_response(:success)
-    assert_select('.products .product:first-child h2', 'Modem 5g')
+    assert_select('.products .product:first-child h2', 'El hobbit')
   end
 
   test 'render a list of products filtered by expensive' do
     get products_url(order_by: 'expensive')
     assert_response(:success)
-    assert_select('.products .product:first-child h2', 'MacBook air semi nuevo')
+    assert_select('.products .product:first-child h2', 'Seat Panda clásico')
   end
 
-  test 'render a list of products filtered by recents' do
+  test 'render a list of products filtered by newest' do
     get products_url(order_by: 'newest')
     assert_response(:success)
-    assert_select('.products .product:first-child h2', 'PS4 Fat')
+    assert_select('.products .product:first-child h2', 'Google Pixel 4')
   end
 
   test 'render a detailed product page' do

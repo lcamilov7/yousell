@@ -12,7 +12,7 @@ class Product < ApplicationRecord
   pg_search_scope(:global_search, against: { title: 'A', description: 'B' }, using: { tsearch: { prefix: true } })
 
   ORDER_BY = {
-    newest: 'created_at DESC',
+    newest: 'id DESC',
     expensive: 'price DESC',
     cheap: 'price ASC'
   }
