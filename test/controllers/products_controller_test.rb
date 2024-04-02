@@ -4,7 +4,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test 'render a list of products' do
     get products_url
     assert_response(:success)
-    assert_select('.product', 3)
+    assert_select('.product', 4)
     assert_select('.category', 3)
   end
 
@@ -18,6 +18,30 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     get products_url(min_price: 140, max_price: 170)
     assert_response(:success)
     assert_select('h2', 'PS4 Fat')
+  end
+
+  test 'render a list of products filtered by query' do
+    get products_url(query: 'switch')
+    assert_response(:success)
+    assert_select('h2', 'Nintendo Switch')
+  end
+
+  test 'render a list of products filtered by cheap' do
+    get products_url(order_by: 'cheap')
+    assert_response(:success)
+    assert_select('.products .product:first-child h2', 'Modem 5g')
+  end
+
+  test 'render a list of products filtered by expensive' do
+    get products_url(order_by: 'expensive')
+    assert_response(:success)
+    assert_select('.products .product:first-child h2', 'MacBook air semi nuevo')
+  end
+
+  test 'render a list of products filtered by recents' do
+    get products_url(order_by: 'newest')
+    assert_response(:success)
+    assert_select('.products .product:first-child h2', 'PS4 Fat')
   end
 
   test 'render a detailed product page' do

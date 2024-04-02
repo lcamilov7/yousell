@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @categories = Category.order('name ASC').load_async
-    @products = Product.with_attached_photo.order('id DESC') # Soluciona error n+1 query
+    @products = Product.with_attached_photo # Soluciona error n+1 query
     @products = @products.where(category_id: params[:category_id]) if params[:category_id].present?
 
     if params[:min_price].present? && params[:max_price].present?
@@ -13,6 +13,12 @@ class ProductsController < ApplicationController
     elsif params[:min_price].blank? && params[:max_price].present?
       @products = @products.where("price <= #{params[:max_price]}")
     end
+
+    @products = @products.global_search(params[:query]) if params[:query].present?
+
+    order_by = Product::ORDER_BY.fetch(params[:order_by]&.to_sym, Product::ORDER_BY[:newest])
+    @products = @products.order(order_by)
+
     @products.load_async
   end
 

@@ -2,11 +2,17 @@
   <h1>Products</h1>
 
   <%= form_with url: products_path, method: :get do |f| %>
+    <%= f.text_field  :query, placeholder: 'Search items', onChange: 'this.form.requestSubmit()', value: params[:query]%>
     <%= f.number_field :min_price, placeholder: 'Min price', onChange: 'this.form.requestSubmit()', value: params[:min_price] %>
     <%= f.number_field :max_price, placeholder: 'Max price', onChange: 'this.form.requestSubmit()', value: params[:max_price] %>
+    <%= f.select :order_by, options_for_select(Product::ORDER_BY.keys.map { |key| [key.capitalize, key] }, params[:order_by]), {}, { onChange: 'this.form.requestSubmit()' } %>
   <% end %>
 
   <%= link_to 'All', products_path %>
+
   <%= render partial: 'category', collection: @categories %>
-  <%= render partial: 'product', collection: @products %>
+
+  <div class="products">
+    <%= render partial: 'product', collection: @products %>
+  </div>
 <% end %>

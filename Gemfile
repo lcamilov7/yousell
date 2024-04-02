@@ -69,3 +69,4 @@ group :test do
 end
 
 gem 'rails-controller-testing' # Permite test para templates
+gem "pg_search" # Para busquedas de texto de postgreSQL

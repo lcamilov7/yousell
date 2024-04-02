@@ -15,3 +15,9 @@ macbook:
   description: Le falla la bateria
   price: 250
   category: computers
+
+modem:
+  title: Modem 5g
+  description: Le falla la antena
+  price: 45
+  category: computers
