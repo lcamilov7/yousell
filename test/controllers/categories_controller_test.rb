@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
+  def setup
+    login
+  end
+
   test 'render a list of categories' do
     get categories_path
     assert_response :success

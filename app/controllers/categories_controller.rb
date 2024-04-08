@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :category, only: %i[edit update destroy]
+  before_action :authorize!
 
   def index
     @categories = Category.order('name ASC')

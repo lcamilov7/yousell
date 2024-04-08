@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :product, only: %i[show edit update destroy]
+  skip_before_action :protect_pages, only: %i[index show]
 
   def index
     @categories = Category.order('name ASC').load_async
@@ -29,7 +30,9 @@ class ProductsController < ApplicationController
   end
 
   def create
+    # @product = Current.user.products.new(product_params) REVISAR REFACTOR EN EL MODELO
     @product = Product.new(product_params)
+    # @product.user_id = Current.user.id
 
     if @product.save
       redirect_to(product_path(@product), notice: 'Product created')
@@ -38,9 +41,12 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    authorize!(product)
+  end
 
   def update
+    authorize!(product)
     if @product.update(product_params)
       redirect_to(product_path(@product), notice: 'Product updated')
     else
@@ -49,6 +55,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    authorize!(product)
     @product.destroy
     redirect_to(products_path, notice: 'Product deleted', status: :see_other) # Redirect por defecto envia un 302, y esto no puede ser en el metodo delete, debemos sobreescribirlo SEE OTHER
   end
@@ -60,10 +67,10 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:title, :description, :price, :photo, :category_id)
+    params.require(:product).permit(:title, :description, :price, :photo, :category_id, :user_id)
   end
 
   def product_params_index
-    params.permit(:category_id, :query, :min_price, :max_price, :order_by)
+    params.permit(:category_id, :query, :min_price, :max_price, :order_by, :page) # page para permitir paginacion
   end
 end

@@ -3,6 +3,7 @@ class Product < ApplicationRecord
 
   has_one_attached :photo
   belongs_to :category
+  belongs_to :user, default: -> { Current.user } # Asignamos de una vez el producto al current user al crearse
 
   validates :title, presence: true
   validates :description, presence: true

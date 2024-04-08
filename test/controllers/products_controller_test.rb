@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
+  def setup
+    login
+  end
+
   test 'render a list of products' do
     get products_url
     assert_response(:success)
@@ -102,7 +106,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_equal(flash[:notice], 'Product updated')
   end
 
-  test 'should not allow to upda a product' do
+  test 'should not allow to update a product' do
     patch product_path(products(:ps4)), params: {
       product: {
         title: nil

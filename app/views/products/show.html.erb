@@ -2,5 +2,6 @@
 <p class='description'><%= @product.description %></p>
 <span class='price'><%= @product.price %></span>
 <%= image_tag(@product.photo, width: 200) if @product.photo.attached? %>
-<%= link_to 'Edit product', edit_product_path(@product) %>
-<%= link_to 'Delete product', product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } %>
+<p>Created by: <%= @product.user.username %></p>
+<%= link_to 'Edit product', edit_product_path(@product) if Current.user == @product.user %>
+<%= link_to 'Delete product', product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } if Current.user == @product.user %>

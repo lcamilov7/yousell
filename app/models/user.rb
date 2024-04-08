@@ -2,6 +2,7 @@ class User < ApplicationRecord
   before_save :downcase_credentials
 
   has_secure_password
+  has_many :products, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true,
     format: {
@@ -19,5 +20,9 @@ class User < ApplicationRecord
   def downcase_credentials
     self.username = self.username.downcase
     self.email = self.email.downcase
+  end
+
+  def admin?
+    self.admin
   end
 end
