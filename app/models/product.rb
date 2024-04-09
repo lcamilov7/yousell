@@ -17,4 +17,8 @@ class Product < ApplicationRecord
     expensive: 'price DESC',
     cheap: 'price ASC'
   }
+
+  def owner?
+    self.user_id == Current.user.id
+  end
 end
