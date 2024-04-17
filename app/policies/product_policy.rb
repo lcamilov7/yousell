@@ -1,5 +1,5 @@
 class ProductPolicy < BasePolicy
-  # Metodos a sser comprobados
+  # Metodos a ser comprobados
   # @item sale de BasePolicy clase padre
 
   def edit

@@ -7,10 +7,6 @@ class CategoryPolicy < BasePolicy
   #   Current.user.admin?
   # end
 
-  # def show
-  #   Current.user.admin?
-  # end
-
   # def new
   #   Current.user.admin?
   # end
