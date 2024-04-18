@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to(product_path(@product), notice: 'Product created')
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity # 422
     end
   end
 
@@ -70,7 +70,9 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:title, :description, :price, :photo, :category_id)
   end
 
+  # Metodo para solo permitir recibir por params los atributos que le queremos permitir al usuario
   def product_params_index
+    # param favorites para el index de favorites con turframebotag, lo mismo para :user_id para el show de user
     params.permit(:category_id, :query, :min_price, :max_price, :order_by, :page, :user_id, :favorites) # page para permitir paginacion
   end
 end

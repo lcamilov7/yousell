@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   before_save :downcase_credentials
 
-  has_secure_password
+  has_secure_password # Añade todos los metodos de contraseña encryptada y login y descomentamos gema bcrypt, tambien permite usar el metodo authenticate en instancias de User
   has_many :products, dependent: :destroy
   has_many :favorites, dependent: :destroy
 

@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  include Favoritable # Logica relacionad con favoritos
+  include Favoritable # Logica relacionada con favoritos
   include PgSearch::Model
 
   has_one_attached :photo
@@ -21,6 +21,6 @@ class Product < ApplicationRecord
   }
 
   def owner?
-    self.user_id == Current.user&.id
+    self.user_id == Current.user&.id # Es importante este & para cuando no haya un current user no salga error
   end
 end

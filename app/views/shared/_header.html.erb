@@ -1,7 +1,6 @@
 <%= link_to products_path do %>
   <h1>YouSell</h1>
 <% end %>
-<%= DateTime.now %>
 <%= link_to 'Add product', new_product_path if Current.user.present? %>
 <%= link_to 'Categories', categories_path if Current.user&.admin? %>
 <%= link_to 'Favorites', favorites_path if Current.user.present? %>

@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+  # PONEMOS PRIMERO LAS RUTAS DE USER Y SESSION PORQUE ESTABA TENIENDO CONFLICTO CON LAS RUTAS DE PRODUCT
   namespace :authentication, path: '', as: '' do # el path: '' es para que no este /authetication, y el as: '' es para no tener que poner authentication_users_new_path porque es muy largo, queremos users_new solo
     resources :users, only: %i[new create], path: '/register', path_names: { new: '/' }
     resources :sessions, only: %i[new create destroy], path: '/login', path_names: { new: '/' }
   end
 
-  resources :favorites, only: %i[index create destroy], param: :product_id
-  resources :users, only: %i[show], path: '/user', param: :username # La otra ruta users que creamos en el namespace :authentication se dedica solamente a autenticacion
+  resources :favorites, only: %i[index create destroy], param: :product_id # Asi el param id de siempre pasara a llamarse product_id es mejor y se entiende mejor, en el controlador de favorites buscaremos product por el param pasado al invocar un metodo del controlador favorites y el param será llamado product_id porq aca lo definimos asi, id es de default pero le cambiamos el nombre a product_id
+  # ESTE SEGUNDO RESOURCES DE USERS VA AFUERA EL PRIMERO PORQUE EL PRIMERO SE DEDICA UNICAMENTE AUTENTICACION
+  resources :users, only: %i[show], path: '/user', param: :username # Asi el nombre del param sera username y no id, porque queremos buscar por username y no id
   resources :categories, except: :show
   resources :products, path: '/' # ahora /products es igual a /
   # delete 'products/:id', to: 'products#destroy'

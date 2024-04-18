@@ -1,5 +1,5 @@
 class ProductPolicy < BasePolicy
-  # Metodos a ser comprobados
+  # definimos los metodos de Products controller que necesitan autorizacion para ejecutarse [edit update destroy] show y index no necesitan autorizacion
   # @item sale de BasePolicy clase padre
 
   def edit

@@ -2,10 +2,11 @@ class FavoritesController < ApplicationController
   def index
     # @favorites = Current.user.favorites Esta linea no es necesaria porque desde la vista index de favorites haremos una peticion asincrona
     # al index de products para que nos traiga solo los proructs que tienen favorite del current user
+    # obtubimos los favoritos del current user en el index de favorites usando turbo frame tag y añadiendo filtro por favorites en querie de FindProduct con el param [:favorites]
   end
 
   def create
-    product.favorite!
+    product.favorite! # Metodo de clase para el produto que crea un favorito para el producto con el Current.user! esta en el modelo de product
     respond_to do |format|
       format.html { redirect_to(product_path(product)) } # LOS TEST NO INTERPRETAN TURBO STREAM, POR ESO DEJAMOS HTML TAMBIEN (no javascript porque turbo usa javascript)
       format.turbo_stream do

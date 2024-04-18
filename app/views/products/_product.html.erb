@@ -1,3 +1,4 @@
+<%# data turbo frame para escapar cada enlace del turbo frame %>
 <%= link_to product_path(product), class: 'product', 'data-turbo-frame': '_top' do %>
   <h2><%=product.title%></h2>
   <span><%= product.price %></span>
