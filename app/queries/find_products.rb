@@ -10,6 +10,7 @@ class FindProducts
     scoped = filter_by_category_id(scoped, params[:category_id])
     scoped = filter_by_price(scoped, params[:min_price], params[:max_price])
     scoped = filter_by_query(scoped, params[:query])
+    scoped = filter_by_user(scoped, params[:user_id])
     sort(scoped, params[:order_by])
   end
 
@@ -39,6 +40,11 @@ class FindProducts
   def filter_by_query(scoped, query)
     return scoped unless query.present?
     return scoped.global_search(query)
+  end
+
+  def filter_by_user(scoped, user_id)
+    return scoped unless user_id.present?
+    return scoped.where(user_id: user_id)
   end
 
   def sort(scoped, order)
