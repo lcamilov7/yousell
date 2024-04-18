@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :sessions, only: %i[new create destroy], path: '/login', path_names: { new: '/' }
   end
 
+  resources :favorites, only: %i[index create destroy], param: :product_id
   resources :users, only: %i[show], path: '/user', param: :username # La otra ruta users que creamos en el namespace :authentication se dedica solamente a autenticacion
   resources :categories, except: :show
   resources :products, path: '/' # ahora /products es igual a /

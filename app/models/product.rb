@@ -1,9 +1,11 @@
 class Product < ApplicationRecord
+  include Favoritable # Logica relacionad con favoritos
   include PgSearch::Model
 
   has_one_attached :photo
   belongs_to :category
   belongs_to :user, default: -> { Current.user } # Asignamos de una vez el producto al current user al crearse
+  has_many :favorites, dependent: :destroy
 
   validates :title, presence: true
   validates :description, presence: true
