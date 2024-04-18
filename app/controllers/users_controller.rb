@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by!(username: params[:username]) # ese ! invocara el raise RecordNotFound si devuelve nil
     # raise NoUserFoundError if @user.nil?
-    @pagy, @products = pagy_countless(FindProducts.new.call({ user_id: @user.id }), items: 12) # añademos paginacion para este usuario pero solo buscaremos productos de este usuario
+    # @pagy, @products = pagy_countless(FindProducts.new.call({ user_id: @user.id }), items: 12) # añademos paginacion para este usuario pero solo buscaremos productos de este usuario
   end
 
   # El error que creamos no era necesario pero igual lo quise dejar para practicar, si cuando hicimos User.find_by! agergabamos

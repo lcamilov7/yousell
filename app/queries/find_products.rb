@@ -11,6 +11,7 @@ class FindProducts
     scoped = filter_by_price(scoped, params[:min_price], params[:max_price])
     scoped = filter_by_query(scoped, params[:query])
     scoped = filter_by_user(scoped, params[:user_id])
+    scoped = filter_by_favorites(scoped, params[:favorites])
     sort(scoped, params[:order_by])
   end
 
@@ -20,8 +21,11 @@ class FindProducts
     Product.with_attached_photo
   end
 
+    # IMPORTANTE EL .present? y .blank? !!
+
   def filter_by_category_id(scoped, category_id)
     return scoped unless category_id.present?
+
     scoped = scoped.where(category_id: category_id)
     return scoped
   end
@@ -39,12 +43,22 @@ class FindProducts
 
   def filter_by_query(scoped, query)
     return scoped unless query.present?
+
     return scoped.global_search(query)
   end
 
   def filter_by_user(scoped, user_id)
     return scoped unless user_id.present?
+
     return scoped.where(user_id: user_id)
+  end
+
+  def filter_by_favorites(scoped, favorites)
+    return scoped unless favorites.present?
+
+    # scoped.joins(:favorites) muestra todos los favoritos asociados a productos, luego el where explica primero con que tabla haremos where
+    # y le decimos que en la tabla favorites, luego que de la tabla favorites solo los user_id que sean igual al Current.user.id
+    scoped.joins(:favorites).where({ favorites: { user_id: Current.user&.id } })
   end
 
   def sort(scoped, order)

@@ -1,5 +1,4 @@
-<h2><%= @user.username %></h2>
-
+<h2>My Favorites</h2>
 <%#  Decimos de donde sacaremos ese turbo frame que es de products_path pero le pasamos un param favorites: true para
 filtrar en nuestro archivo de queries/find_products.rb productos cuando hay un param favorites %>
-<%= turbo_frame_tag :products, src: products_path(user_id: @user.id) %>
+<%= turbo_frame_tag :products, src: products_path(favorites: true) %>

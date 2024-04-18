@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # @product = Current.user.products.new(product_params) REVISAR REFACTOR EN EL MODELO
+    # @product = Current.user.products.new(product_params) REVISAR REFACTOR EN EL MODELO PRODUCT
     @product = Product.new(product_params)
     # @product.user_id = Current.user.id
 
@@ -47,8 +47,8 @@ class ProductsController < ApplicationController
 
   def update
     authorize!(product)
-    if @product.update(product_params)
-      redirect_to(product_path(@product), notice: 'Product updated')
+    if product.update(product_params)
+      redirect_to(product_path(product), notice: 'Product updated')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -56,21 +56,21 @@ class ProductsController < ApplicationController
 
   def destroy
     authorize!(product)
-    @product.destroy
+    product.destroy
     redirect_to(products_path, notice: 'Product deleted', status: :see_other) # Redirect por defecto envia un 302, y esto no puede ser en el metodo delete, debemos sobreescribirlo SEE OTHER
   end
 
   private
 
-  def product
-    @product = Product.find(params[:id])
+  def product # Memoization para que cada vez que en el mismo metodo invoquemos este metodo llamado product no tengamos que hacer otra vez la misma consulta a la base de datos y que se quede en el cache
+    @product ||= Product.find(params[:id])
   end
 
   def product_params
-    params.require(:product).permit(:title, :description, :price, :photo, :category_id, :user_id)
+    params.require(:product).permit(:title, :description, :price, :photo, :category_id)
   end
 
   def product_params_index
-    params.permit(:category_id, :query, :min_price, :max_price, :order_by, :page) # page para permitir paginacion
+    params.permit(:category_id, :query, :min_price, :max_price, :order_by, :page, :user_id, :favorites) # page para permitir paginacion
   end
 end

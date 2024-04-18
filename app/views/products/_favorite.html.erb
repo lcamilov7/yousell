@@ -1,0 +1,7 @@
+<div id='favorite'><%# este id='favorite' es el que pasamos en el turbo_Stream en el favorite controller %>
+  <% if product.favorite? %>
+    <%= link_to '💔', favorite_path(product_id: product.id), data: { turbo_method: :delete } unless product.owner? %>
+  <% else %>
+    <%= link_to '❤️', favorites_path(product_id: product.id), data: { turbo_method: :post } unless product.owner? %>
+  <% end %>
+</div>
