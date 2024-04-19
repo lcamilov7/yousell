@@ -1,9 +1,14 @@
-<%= link_to products_path do %>
-  <h1 class='text-red-500'>YouSell</h1>
-<% end %>
-<%= link_to 'Add product', new_product_path if Current.user.present? %>
-<%= link_to 'Categories', categories_path if Current.user&.admin? %>
-<%= link_to 'Favorites', favorites_path if Current.user.present? %>
-<%= link_to 'Log In', new_session_path unless Current.user.present? %>
-<%= link_to 'Sign up', new_user_path unless Current.user.present? %>
-<%= link_to 'Log Out', session_path(Current.user.id), data: { turbo_method: :delete, turbo_confirm: 'Log out?' } if Current.user.present? %>
+<div class='bg-white flex justify-between items-center px-2'>
+  <%= link_to products_path do %>
+    <h1 class='text-2xl font-bold text-teal-500'>YouSell</h1>
+  <% end %>
+
+  <div>
+    <%= link_to 'Add product', new_product_path, class: 'mx-2 text-teal-500 font-bold' if Current.user.present? %>
+    <%= link_to 'Categories', categories_path, class: 'mx-2 text-teal-500 font-bold' if Current.user&.admin? %>
+    <%= link_to 'Favorites', favorites_path, class: 'mx-2 text-teal-500 font-bold' if Current.user.present? %>
+    <%= link_to 'Log In', new_session_path, class: 'mx-2 text-teal-500 font-bold' unless Current.user.present? %>
+    <%= link_to 'Sign up', new_user_path, class: 'mx-2 text-teal-500 font-bold' unless Current.user.present? %>
+    <%= link_to 'Log Out', session_path(Current.user.id), data: { turbo_method: :delete, turbo_confirm: 'Log out?' }, class: 'mx-2 text-teal-500 font-bold' if Current.user.present? %>
+  </div>
+</div>
