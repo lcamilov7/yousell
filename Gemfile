@@ -73,3 +73,4 @@ gem "pg_search" # Para busquedas de texto de postgreSQL
 gem "pagy", "~> 8.0" # Paginación infinita
 
 gem "tailwindcss-rails", "~> 2.4"
+gem "font-awesome-sass"

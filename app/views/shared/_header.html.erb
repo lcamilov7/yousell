@@ -1,14 +1,17 @@
-<div class='bg-white flex justify-between items-center px-2'>
+<div class='bg-white flex justify-between items-center px-2' data-controller='button-menu'>
   <%= link_to products_path do %>
     <h1 class='text-2xl font-bold text-teal-500'>YouSell</h1>
   <% end %>
 
-  <div>
-    <%= link_to 'Add product', new_product_path, class: 'mx-2 text-teal-500 font-bold' if Current.user.present? %>
-    <%= link_to 'Categories', categories_path, class: 'mx-2 text-teal-500 font-bold' if Current.user&.admin? %>
-    <%= link_to 'Favorites', favorites_path, class: 'mx-2 text-teal-500 font-bold' if Current.user.present? %>
-    <%= link_to 'Log In', new_session_path, class: 'mx-2 text-teal-500 font-bold' unless Current.user.present? %>
-    <%= link_to 'Sign up', new_user_path, class: 'mx-2 text-teal-500 font-bold' unless Current.user.present? %>
-    <%= link_to 'Log Out', session_path(Current.user.id), data: { turbo_method: :delete, turbo_confirm: 'Log out?' }, class: 'mx-2 text-teal-500 font-bold' if Current.user.present? %>
+  <button class='sm:hidden' data-button-menu-target='button' data-action="click->button-menu#fire">
+    <i class="fa-solid fa-bars text-xl text-teal-500"></i>
+  </button>
+  <%# Este div sera el que mostaremos cuando le den al button de mas arriba en version movil %>
+  <div data-button-menu-target='menu' class='sm:hidden absolute bg-white top-0 right-0 shadow z-10 h-full flex flex-col min-w-[35%] overflow-y-scroll ease-in-out duration 200 p-5 translate-x-full'>
+    <%= render(partial: 'shared/items') %>
+  </div>
+
+  <div class='hidden sm:block'>
+    <%= render(partial: 'shared/items') %>
   </div>
 </div>
