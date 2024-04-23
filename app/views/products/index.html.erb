@@ -8,22 +8,22 @@
       <%# El metodo options_for_select toma dos argumentos, el primero un array de arrays que construimos con map, que devuelve de por si un array
       y le estamos diciendo q por cada iteracion a ese array le agregue un array con el primer valor key.capitalize que es lo que se muestra
       en el dropdown y el segundo valor es el value que recibe el param %>
-      <%= f.select :order_by, options_for_select(Product::ORDER_BY.keys.map { |key| [key.capitalize, key] }, params[:order_by]), {}, { onChange: 'this.form.requestSubmit()', class: 'w-1/3 rounded-2xl border-gray-200' } %>
+      <%= f.select :order_by, options_for_select(Product::ORDER_BY.keys.map { |key| [key.capitalize, key] }, params[:order_by]), {}, { onChange: 'this.form.requestSubmit()', class: 'w-1/3 rounded-2xl border-gray-200 text-gray-500' } %>
     </div>
   <% end %>
 
-  <div class='flex overflow-x-scroll gap-2 my-2 pb-2'>
+  <div class='flex overflow-x-scroll gap-2 my-4 pb-2'>
     <%= link_to 'All', products_path, class: 'bg-white text-gray-600 px-4 py-2 rounded-2xl drop-shadow-sm hover:bg-gray-300' %>
     <%= render partial: 'category', collection: @categories %>
   </div>
 
-  <%= turbo_frame_tag :products do %> <%# Este turbo frame tag :products toco ponerlo para poder llamar todo lo que hayd entro de el desde el index de favorites %><%# Este turbo frame_tag es para renderizar los productos en el index de favorites %>
+  <%= turbo_frame_tag :products, class: 'flex flex-col m-2' do %> <%# Este turbo frame tag :products toco ponerlo para poder llamar todo lo que hayd entro de el desde el index de favorites %><%# Este turbo frame_tag es para renderizar los productos en el index de favorites %>
     <%# haremos otro turbo frame para encapsular la navegacion independiente de los products para
     no perder los values del form ni la categoria %>
-    <%= turbo_frame_tag "products-#{@pagy.page}", class: 'products flex flex-col w-full' do %>
+    <%= turbo_frame_tag "products-#{@pagy.page}", class: 'products flex flex-col w-full sm:flex-row sm:flex-wrap sm:gap-x-2' do %>
       <%= render partial: 'product', collection: @products %>
       <%# anidamos otro frame tag para poder hacer la paginacion %>
-      <%= turbo_frame_tag "products-#{@pagy.next}", class: 'products flex flex-col w-full', src: pagy_url_for(@pagy, @pagy.next), loading: :lazy if @pagy.next %>
+      <%= turbo_frame_tag "products-#{@pagy.next}", class: 'products flex flex-col w-full sm:flex-row sm:flex-wrap sm:gap-x-2', src: pagy_url_for(@pagy, @pagy.next), loading: :lazy if @pagy.next %>
     <% end %>
   <% end %>
 
