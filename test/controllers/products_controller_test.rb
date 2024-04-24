@@ -73,7 +73,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to(product_path(Product.last))
+    assert_redirected_to(products_path)
     assert_equal(flash[:notice], 'Product created')
   end
 

@@ -13,8 +13,8 @@
   <% end %>
 
   <div class='flex overflow-x-scroll gap-2 my-4 pb-2'>
-    <%= link_to 'All', products_path, class: 'bg-white text-gray-600 px-4 py-2 rounded-2xl drop-shadow-sm hover:bg-gray-300' %>
-    <%= render partial: 'category', collection: @categories %>
+    <%= render(CategoryComponent.new) %>  <%# este renderiza la opcion de all%>
+    <%= render(CategoryComponent.with_collection(@categories)) %><%# este renderiza el resto de filtrados de categories%>
   </div>
 
   <%= turbo_frame_tag :products, class: 'flex flex-col m-2' do %> <%# Este turbo frame tag :products toco ponerlo para poder llamar todo lo que hayd entro de el desde el index de favorites %><%# Este turbo frame_tag es para renderizar los productos en el index de favorites %>

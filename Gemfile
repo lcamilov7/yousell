@@ -74,3 +74,5 @@ gem "pagy", "~> 8.0" # Paginación infinita
 
 gem "tailwindcss-rails", "~> 2.4"
 gem "font-awesome-sass"
+
+gem "view_component", "~> 3.12"
