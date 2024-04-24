@@ -12,15 +12,20 @@
   </head>
 
   <body class='bg-gray-200' style='max-width: 100%;'>
-    <%= render 'shared/flash' %>
-    <%= render 'shared/header' %>
+    <div class='relative min-h-screen'>
+      <div style='padding-bottom: 3.5rem;'>
+        <%= render 'shared/flash' %>
+        <%= render 'shared/header' %>
 
-    <div class='lg:container lg:mx-auto'>
-      <%= yield %>
+        <div class='lg:container lg:mx-auto'>
+          <%= yield %>
+        </div>
+
+        <%# este turbo frame es para incrustar el contenido de la petición new#products y desde el lin add product lo activamos (ir a shared/items)%>
+        <%= turbo_frame_tag 'modal' do %>
+        <% end %>
+      </div>
+      <%= render 'shared/footer' %>
     </div>
-
-    <%# este turbo frame es para incrustar el contenido de la petición new#products y desde el lin add product lo activamos (ir a shared/items)%>
-    <%= turbo_frame_tag 'modal' do %>
-    <% end %>
   </body>
 </html>
