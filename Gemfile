@@ -60,6 +60,9 @@ group :development do
   # gem "spring"
 
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+
+  # Para ver emails en el navegador
+  gem 'letter_opener'
 end
 
 group :test do

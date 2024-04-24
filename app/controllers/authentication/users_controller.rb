@@ -9,8 +9,10 @@ class Authentication::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      # El with(user: @user) envia un params[:user] = @user al mailer
+      UserMailer.with(user: @user).welcome.deliver_later # Queremos enviar un email de bienvenida al que se registre, deliver_later es para que lo haga sincrono y no haya que esperar que se envie el email para seguir a la siguiente linea de codigo
       session[:user_id] = @user.id
-      redirect_to(products_path, notice: 'Usuario creado')
+      redirect_to(products_path, notice: 'User created')
     else
       render :new, status: :unprocessable_entity
     end
