@@ -1,4 +1,4 @@
-<%= link_to 'Add product', new_product_path, class: 'mx-2 text-teal-500 font-bold' if Current.user.present? %>
+<%= link_to 'Add product', new_product_path, data: { turbo_frame: 'modal' }, class: 'mx-2 text-teal-500 font-bold' if Current.user.present? %>
 <%= link_to 'Categories', categories_path, class: 'mx-2 text-teal-500 font-bold' if Current.user&.admin? %>
 <%= link_to 'Favorites', favorites_path, class: 'mx-2 text-teal-500 font-bold' if Current.user.present? %>
 <%= link_to 'Log In', new_session_path, class: 'mx-2 text-teal-500 font-bold' unless Current.user.present? %>

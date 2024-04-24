@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
     # @product.user_id = Current.user.id
 
     if @product.save
-      redirect_to(product_path(@product), notice: 'Product created')
+      redirect_to(products_path, notice: 'Product created')
     else
       render :new, status: :unprocessable_entity # 422
     end
