@@ -69,6 +69,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'webmock' # para llamado a api simulado deste test
 end
 
 gem 'rails-controller-testing' # Permite test para templates

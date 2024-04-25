@@ -7,6 +7,15 @@ class Authentication::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create a new user' do
+    # Aqui tambien debemos hacer una peticion "fake" a la api que da el valor a user.country y le pasamos de ip la localhost que si pasamos esa ip deberia devolver nil porque asi lo especificamos en fetch_country_service.rb
+    stub_request(:get, 'http://ip-api.com/json/127.0.0.1').to_return(
+      status: 200,
+      body: {
+        status: 'fail'
+      }.to_json,
+      headers: {}
+    )
+
     assert_difference('User.count', 1) do
       post users_path, params: {
         user: {
@@ -20,6 +29,14 @@ class Authentication::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not allow to create a new user' do
+    stub_request(:get, 'http://ip-api.com/json/127.0.0.1').to_return(
+      status: 200,
+      body: {
+        status: 'fail'
+      }.to_json,
+      headers: {}
+    )
+
     assert_difference('User.count', 0) do
       post users_path, params: {
         user: {

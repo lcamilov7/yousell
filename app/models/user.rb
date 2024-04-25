@@ -16,7 +16,9 @@ class User < ApplicationRecord
       with: /\A[a-z0-9A-Z]+\z/,
       message: 'invalid is not valid only letter and number allowed' # o message: :invalid
     }
-  validates :password, length: { minimum: 10 }
+
+  # Password no existe, es un campo virtual para password_digest, y el if es para que no se ejecute la validacion si no cambiamos la contraseña porque sino salta error cuando hagamos user.update en alguna instancia 
+  validates :password, length: { minimum: 10 }, if: :password_digest_changed?
 
   def downcase_credentials
     self.username = self.username.downcase
