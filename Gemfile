@@ -80,3 +80,6 @@ gem "tailwindcss-rails", "~> 2.4"
 gem "font-awesome-sass"
 
 gem "view_component", "~> 3.12"
+
+gem "sidekiq", "~> 7.2" # Para meter nuestros background jobs en redis y que no se pierdan si cerramos el server o si cae ya que por default las queue de background job se guardan en la ram y esto no funcionara en produccion obviamente
+gem "sidekiq-failures"

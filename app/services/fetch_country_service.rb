@@ -8,11 +8,11 @@ class FetchCountryService
   def perform
     url = "http://ip-api.com/json/#{@ip}"
     ip_info_serialized = URI.open(url).read
-    ip_info = JSON.parse(ip_info_serialized)
-    status = ip_info['status']
+    ip_info_parsed = JSON.parse(ip_info_serialized)
+    status = ip_info_parsed['status']
 
     if status == 'success' # si la respuesta es success es porque la request.remote_ip ha enviado una ip valida, si n la respuesta es fail es porque estamos haciendola desde el localhost o poruque request.remote_ip no envio ip valida
-      return ip_info['countryCode']
+      return ip_info_parsed['countryCode']
     else
       return nil
     end
