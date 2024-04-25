@@ -18,7 +18,7 @@ clothes = Category.create!(name: 'Clothes')
 cars = Category.create!(name: 'Cars')
 music = Category.create!(name: 'Music')
 electronic = Category.create!(name: 'Electronic')
-books = Category.create!(name: 'books')
+books = Category.create!(name: 'Books')
 mobile = Category.create!(name: 'Mobile')
 sports = Category.create!(name: 'Sports')
 puts '### Categories created ###'
@@ -29,6 +29,9 @@ ps4.photo.attach(io: File.open('app/assets/images/ps4.jpg'), filename: 'ps4.jpg'
 
 switch = luis.products.create(category_id: videogames.id, title: 'Nintendo Switch', description: 'Le falla el lector de tarjeta SD', price: 195)
 switch.photo.attach(io: File.open('app/assets/images/switch.jpg'), filename: 'switch.jpg')
+
+shirt = sara.products.create(category_id: clothes.id, title: 'Camisita', description: 'Camisita talla M', price: 10)
+shirt.photo.attach(io: File.open('app/assets/images/shirt.jpg'), filename: 'shirt.jpg')
 
 nintendo64 = luis.products.create(category_id: videogames.id, title: 'Nintendo 64 en buen estado', description: 'Con su caja, solo tiene algún pequeño arañazo', price: 190)
 nintendo64.photo.attach(io: File.open('app/assets/images/nintendo64.jpg'), filename: 'nintendo65.jpg')

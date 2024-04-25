@@ -1,19 +1,19 @@
 <%= turbo_frame_tag 'home' do %>
   <%= form_with url: products_path, method: :get do |f| %>
-    <%= f.text_field  :query, placeholder: 'Search items', onChange: 'this.form.requestSubmit()', value: params[:query], class: 'w-full my-2 rounded-2xl border-gray-200'%>
+    <%= f.text_field  :query, placeholder: 'Search items', onChange: 'this.form.requestSubmit()', value: params[:query], class: 'w-full my-2 rounded-2xl border-neutral-800 bg-neutral-600 placeholder-gray-200'%>
 
     <div class='flex'>
-      <%= f.number_field :min_price, placeholder: 'Min price', onChange: 'this.form.requestSubmit()', value: params[:min_price], class: 'w-1/3 rounded-2xl border-gray-200' %>
-      <%= f.number_field :max_price, placeholder: 'Max price', onChange: 'this.form.requestSubmit()', value: params[:max_price], class: 'w-1/3 rounded-2xl border-gray-200 mx-2' %>
+      <%= f.number_field :min_price, placeholder: 'Min price', onChange: 'this.form.requestSubmit()', value: params[:min_price], class: 'w-1/3 rounded-2xl border-neutral-800 bg-neutral-600 placeholder-gray-200' %>
+      <%= f.number_field :max_price, placeholder: 'Max price', onChange: 'this.form.requestSubmit()', value: params[:max_price], class: 'w-1/3 rounded-2xl border-neutral-800 bg-neutral-600 mx-2 placeholder-gray-200' %>
       <%# El metodo options_for_select toma dos argumentos, el primero un array de arrays que construimos con map, que devuelve de por si un array
       y le estamos diciendo q por cada iteracion a ese array le agregue un array con el primer valor key.capitalize que es lo que se muestra
       en el dropdown y el segundo valor es el value que recibe el param %>
-      <%= f.select :order_by, options_for_select(Product::ORDER_BY.keys.map { |key| [key.capitalize, key] }, params[:order_by]), {}, { onChange: 'this.form.requestSubmit()', class: 'w-1/3 rounded-2xl border-gray-200 text-gray-500' } %>
+      <%= f.select :order_by, options_for_select(Product::ORDER_BY.keys.map { |key| [key.capitalize, key] }, params[:order_by]), {}, { onChange: 'this.form.requestSubmit()', class: 'w-1/3 rounded-2xl border-neutral-800 bg-neutral-600 text-gray-200' } %>
     </div>
   <% end %>
 
-  <div class='flex overflow-x-scroll gap-2 my-4 pb-2'>
-    <%= render(CategoryComponent.new) %>  <%# este renderiza la opcion de all%>
+  <div class='flex overflow-x-scroll gap-2 my-4 pb-2' style='scrollbar-width: thin; scrollbar-color: #14B8A6 #525252;'>
+    <%= render(CategoryComponent.new) %>  <%# este renderiza la opcion de allrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-teal-%>
     <%= render(CategoryComponent.with_collection(@categories)) %><%# este renderiza el resto de filtrados de categories%>
   </div>
 

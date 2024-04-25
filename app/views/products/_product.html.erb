@@ -1,5 +1,5 @@
 <%# 'data-turbo-frame' para escapar cada enlace del turbo frame %>
-<%= link_to product_path(product), 'data-turbo-frame': '_top', class: 'product bg-white hover:bg-gray-200 mb-2 rounded sm:w-[calc(33.33333%_-_0.5rem)] lg:w-[calc(25%_-_0.5rem)] shadow' do %>
+<%= link_to product_path(product), 'data-turbo-frame': '_top', class: 'product bg-neutral-600 text-gray-200 hover:bg-gray-200 mb-2 rounded sm:w-[calc(33.33333%_-_0.5rem)] lg:w-[calc(25%_-_0.5rem)] shadow' do %>
 
   <% if product.photo.attached? %>
     <%= image_tag(product.photo, class: 'w-full h-60 object-cover')%>
