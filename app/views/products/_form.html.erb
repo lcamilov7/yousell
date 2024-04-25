@@ -6,30 +6,30 @@
   </div>
 
   <div>
-    <%= f.text_field :title, placeholder: 'Product Title', class: 'rounded-2xl border-gray-200 mb-4 w-full' %>
+    <%= f.text_field :title, placeholder: 'Product Title', class: 'rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200' %>
   </div>
 
   <div>
-    <%= f.text_area :description, placeholder: 'Description', class: 'rounded-2xl border-gray-200 mb-4 w-full', rows: 5 %>
+    <%= f.text_area :description, placeholder: 'Description', class: 'rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200', rows: 5 %>
   </div>
 
   <% if @product.new_record? %>
     <div>
-      <%= f.number_field :price, placeholder: 'Price', class: 'rounded-2xl border-gray-200 mb-4 w-full' %>
+      <%= f.number_field :price, placeholder: 'Price', class: 'rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200' %>
     </div>
   <% end %>
 
   <div>
     <%# :category_id es lo que envia a la petición, el select se rellena con Category.order('name ASC'), y el select va enviar el :id pero mostrará el :name %>
-    <%= f.collection_select :category_id, Category.order('name ASC'), :id, :name, {}, { class: 'rounded-2xl border-gray-200 mb-4 w-full text-gray-500' } %>
+    <%= f.collection_select :category_id, Category.order('name ASC'), :id, :name, {}, { class: 'rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 text-gray-200' } %>
   </div>
 
-  <div class='rounded-2xl border-gray-200 mb-4 w-full border-[1px] p-3 text-gray-500 bg-white'>
+  <div class='rounded-2xl border-neutral-800 mb-4 w-full border-[1px] p-3 bg-neutral-600 text-gray-200'>
     <%= f.label :photo %>
     <%= f.file_field :photo %>
   </div>
 
   <div>
-    <%= f.submit 'Add', class: "px-4 py-2 font-semibold text-sm bg-teal-500 hover:bg-teal-800 text-white rounded-2xl cursor-pointer shadow-sm" %>
+    <%= f.submit 'Add', class: "px-4 py-2 font-semibold text-sm bg-orange-500 hover:bg-teal-800 text-white rounded-2xl cursor-pointer shadow-sm" %>
   </div>
 <% end %>

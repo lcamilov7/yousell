@@ -5,7 +5,7 @@ require "test_helper"
 class CategoryComponentTest < ViewComponent::TestCase
   test 'component render an empty category <a> tag' do
     assert_equal(
-      %(<a class=\"bg-teal-500 text-white px-4 py-2 rounded-2xl drop-shadow-sm hover:bg-gray-300\" href=\"/\">All</a>),
+      %(<a class=\"bg-orange-500 text-white px-4 py-2 rounded-2xl drop-shadow-sm hover:bg-gray-300\" href=\"/\">All</a>),
       render_inline(CategoryComponent.new).css('a').to_html
     )
   end
