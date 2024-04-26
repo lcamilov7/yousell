@@ -1,7 +1,11 @@
 <div class='bg-neutral-600 flex justify-between items-center px-2' data-controller='button-menu'>
   <%= link_to products_path do %>
-    <h1 class='text-2xl font-bold text-orange-500'>YouSell</h1>
+    <div class='flex items-center'>
+      <h1 class='text-2xl font-bold text-orange-500'>YouSell</h1>
+      <img src="assets/logo2.png" alt="logo" width='70px' height='70px'>
+    </div>
   <% end %>
+
 
   <button class='sm:hidden' data-action="click->button-menu#toggle">
     <i class="fa-solid fa-bars text-xl text-orange-500"></i>
