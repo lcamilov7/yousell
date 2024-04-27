@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
       format.html { redirect_to(product_path(product)) } # LOS TEST NO INTERPRETAN TURBO STREAM, POR ESO DEJAMOS HTML TAMBIEN (no javascript porque turbo usa javascript)
       format.turbo_stream do
         # Lo que hace este render es coger el elemento con id='favorite' que se encuentra en el partial dado con variables locales dadas y lo reemplazara por el mismo si hubo cambios, en este caso el cambio es que se muestre para dar like o dislike
-        render turbo_stream: turbo_stream.replace('favorite', partial: 'products/favorite', locals: { product: product })
+        render(turbo_stream: turbo_stream.replace('favorite', partial: 'products/favorite', locals: { product: product }) )
       end
     end
   end
@@ -21,7 +21,7 @@ class FavoritesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(product_path(product), status: :see_other) }
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace('favorite', partial: 'products/favorite', locals: { product: product })
+        render(turbo_stream: turbo_stream.replace('favorite', partial: 'products/favorite', locals: { product: product }))
       end
     end
   end

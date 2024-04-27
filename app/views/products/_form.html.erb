@@ -30,6 +30,6 @@
   </div>
 
   <div>
-    <%= f.submit 'Add', class: "px-4 py-2 font-semibold text-sm bg-orange-500 hover:bg-teal-800 text-white rounded-2xl cursor-pointer shadow-sm" %>
+    <%= f.submit @product.new_record? ? 'Add' : 'Update', class: "px-4 py-2 font-semibold text-sm bg-orange-500 hover:bg-teal-800 text-white rounded-2xl cursor-pointer shadow-sm" %>
   </div>
 <% end %>

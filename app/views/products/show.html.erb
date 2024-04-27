@@ -13,3 +13,5 @@ tambien se podia llamar un metodo que hiciera lo mismo que hace el metodo destro
 tampoco habria que pasarle parametros al otro metodo que hiciera lo mismo pero aca si se los pasamos por convención un metodo destroy necesita un parametro %>
 <%= link_to 'Delete product', product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } if @product.owner? %>
 <p>Seller:<%= link_to "#{@product.user.username}", user_path(@product.user.username) %></p>
+
+<div data-controller='websocket-product'></div><%# div para websocket action cable %>

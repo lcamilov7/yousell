@@ -48,7 +48,8 @@ class ProductsController < ApplicationController
   def update
     authorize!(product)
     if product.update(product_params)
-      redirect_to(product_path(product), notice: 'Product updated')
+      notify_all_users # metodo que invocara el action cable
+      redirect_to(products_path, notice: 'Product updated')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -74,5 +75,9 @@ class ProductsController < ApplicationController
   def product_params_index
     # param favorites para el index de favorites con turframebotag, lo mismo para :user_id para el show de user
     params.permit(:category_id, :query, :min_price, :max_price, :order_by, :page, :user_id, :favorites) # page para permitir paginacion
+  end
+
+  def notify_all_users
+    ActionCable.server.broadcast('product_27', { action: 'updated' })
   end
 end
