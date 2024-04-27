@@ -48,7 +48,8 @@ class ProductsController < ApplicationController
   def update
     authorize!(product)
     if product.update(product_params)
-      notify_all_users # metodo que invocara el action cable
+      # notify_all_users # metodo que invocara el action cable
+      product.broadcast # aprendev(55)
       redirect_to(products_path, notice: 'Product updated')
     else
       render :edit, status: :unprocessable_entity
@@ -77,7 +78,7 @@ class ProductsController < ApplicationController
     params.permit(:category_id, :query, :min_price, :max_price, :order_by, :page, :user_id, :favorites) # page para permitir paginacion
   end
 
-  def notify_all_users
-    ActionCable.server.broadcast("product_#{product.id}", { action: 'updated' })
-  end
+  # def notify_all_users
+  #   ActionCable.server.broadcast("product_#{product.id}", { action: 'updated' })
+  # end la parte de la vista del show la borre (aprendev 54)
 end
