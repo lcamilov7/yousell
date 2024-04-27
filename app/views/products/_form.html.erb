@@ -6,16 +6,16 @@
   </div>
 
   <div>
-    <%= f.text_field :title, placeholder: 'Product Title', class: 'rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200' %>
+    <%= f.text_field :title, placeholder: 'Product Title', class: 'text-gray-200 rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200' %>
   </div>
 
   <div>
-    <%= f.text_area :description, placeholder: 'Description', class: 'rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200', rows: 5 %>
+    <%= f.text_area :description, placeholder: 'Description', class: ' text-gray-200 rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200', rows: 5 %>
   </div>
 
   <% if @product.new_record? %>
     <div>
-      <%= f.number_field :price, placeholder: 'Price', class: 'rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200' %>
+      <%= f.number_field :price, placeholder: 'Price', class: 'text-gray-200 rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200' %>
     </div>
   <% end %>
 
@@ -30,6 +30,6 @@
   </div>
 
   <div>
-    <%= f.submit @product.new_record? ? 'Add' : 'Update', class: "px-4 py-2 font-semibold text-sm bg-orange-500 hover:bg-teal-800 text-white rounded-2xl cursor-pointer shadow-sm" %>
+    <%= f.submit @product.new_record? ? 'Add' : 'Update', class: "px-4 py-2 font-semibold text-sm bg-orange-500 hover:bg-orange-700 text-white rounded-2xl cursor-pointer shadow-sm" %>
   </div>
 <% end %>
