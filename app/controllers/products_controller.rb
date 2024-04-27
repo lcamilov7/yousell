@@ -78,6 +78,6 @@ class ProductsController < ApplicationController
   end
 
   def notify_all_users
-    ActionCable.server.broadcast('product_27', { action: 'updated' })
+    ActionCable.server.broadcast("product_#{product.id}", { action: 'updated' })
   end
 end

@@ -14,4 +14,4 @@ tampoco habria que pasarle parametros al otro metodo que hiciera lo mismo pero a
 <%= link_to 'Delete product', product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } if @product.owner? %>
 <p>Seller:<%= link_to "#{@product.user.username}", user_path(@product.user.username) %></p>
 
-<div data-controller='websocket-product'></div><%# div para websocket action cable %>
+<div data-controller='websocket-product' data-productid='<%=@product.id%>'></div><%# div para websocket action cable, el data atribute es para hacer el canal dinamico dependiendo de cual show de product es %>

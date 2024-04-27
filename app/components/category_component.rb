@@ -21,10 +21,10 @@ class CategoryComponent < ViewComponent::Base
   end
 
   def background # Este metodo pondra un background a la category seleccionada en el momento para que se ueda saber cual estamos viendo
-    active? ? 'bg-orange-500 text-white' : 'bg-neutral-600 text-gray-200'
+    active? ? 'bg-orange-500 text-white hover:bg-orange-700' : 'bg-neutral-600 text-gray-200 hover:bg-orange-500'
   end
 
   def classes
-    @category ? "category #{background} px-4 py-2 rounded-2xl drop-shadow-sm hover:bg-orange-500" : "#{background} px-4 py-2 rounded-2xl drop-shadow-sm hover:bg-orange-500"
+    @category ? "category #{background} px-4 py-2 rounded-2xl drop-shadow-sm" : "#{background} px-4 py-2 rounded-2xl drop-shadow-sm"
   end
 end
