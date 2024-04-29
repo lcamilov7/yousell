@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :authorize!
 
   def index
-    @categories = Category.order('name ASC')
+    @categories = Category.order('created_at DESC')
   end
 
   def new

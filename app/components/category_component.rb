@@ -7,7 +7,9 @@ class CategoryComponent < ViewComponent::Base
 
   def title
     # Si hay @category entonces el title sera el nombre de la categoria si no hay @category entonces es para all
-    @category ? @category[:category].name.to_s : 'All'
+    title = @category ? @category[:category].name.to_s : 'All'
+    count = @category ? Category.find(@category[:category].id).products.count : Product.count
+    "#{title}(#{count})"
   end
 
   def link

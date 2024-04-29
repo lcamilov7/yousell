@@ -6,11 +6,10 @@
   </div>
 
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder: 'Category name', class: 'text-gray-200 rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200' %>
   </div>
 
   <div>
-    <%= f.submit %>
+    <%= f.submit @category.new_record? ? 'Add' : 'Update', class: "px-4 py-2 font-semibold text-sm bg-orange-500 hover:bg-orange-700 text-white rounded-2xl cursor-pointer shadow-sm" %>
   </div>
 <% end %>
