@@ -102,7 +102,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
         price: 160
       }
     }
-    assert_redirected_to(product_path(products(:ps4)))
+    assert_redirected_to(products_path)
     assert_equal(flash[:notice], 'Product updated')
   end
 

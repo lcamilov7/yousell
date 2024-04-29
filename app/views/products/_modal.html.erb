@@ -1,0 +1,13 @@
+<%= turbo_frame_tag 'modal' do %>
+  <div data-controller='modal'>
+    <div data-action='click->modal#close' class='fixed z-10 w-full h-full top-0 left-0 bg-black bg-opacity-40'></div>
+    <div data-modal-target='sidebar' class='fixed top-0 right-0 z-20 w-1/2 sm:w-3/6 lg:w-2/6 h-full border-gray-200 border-l-[1px] overflow-y-scroll shadow flex flex-col ease-in-out duration-300 p-5 translate-x-full' style='background: transparent; backdrop-filter: blur(20px); scrollbar-width: thin; scrollbar-color: #14B8A6 white;'>
+      <div class='flex justify-start'><button data-action='click->modal#close'><i class="fa-solid fa-x text-red-600 mb-4"></i></button></div>
+      <h2 class='font-bold mb-4 text-orange-500'>
+        <%= @product.new_record? ? 'Add Product' : 'Edit Product' %>
+      </h2>
+
+      <%= render 'form' %>
+    </div>
+  </div>
+<% end %>

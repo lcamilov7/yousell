@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <div class='flex overflow-x-scroll gap-2 my-4 pb-2' style='scrollbar-width: thin; scrollbar-color: #F97316 #525252;'>
+  <div class='flex overflow-x-scroll gap-2 my-4 pb-2 scroll-bar'>
     <%= render(CategoryComponent.new) %>  <%# este renderiza la opcion de allrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-teal-%>
     <%= render(CategoryComponent.with_collection(@categories)) %><%# este renderiza el resto de filtrados de categories%>
   </div>
