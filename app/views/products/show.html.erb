@@ -1,13 +1,17 @@
-<%= render partial: 'product_details', locals: { product: @product } %>
+<div class='flex flex-col justify-center sm:flex-row mt-12 h-4/5'>
+  <%= render partial: 'product_details', locals: { product: @product } %>
 
-<%= render partial: 'favorite', locals: { product: @product } %> <%# aca hay que pasar la variable como local para poder hacer el turbo stream lo podemos ver en favorites controller %>
+  <%= link_to 'Edit product', edit_product_path(@product), data: { turbo_frame: 'modal' } if @product.owner? %>
+  <%# El link de delete lo hicimos convencionalmente como se hace un metodo destroy aunque no estamos buscadno nada en la base de datos,
+  tambien se podia llamar un metodo que hiciera lo mismo que hace el metodo destroy pero lo dejamos asi por convención
+  tampoco habria que pasarle parametros al otro metodo que hiciera lo mismo pero aca si se los pasamos por convención un metodo destroy necesita un parametro %>
+  <%= link_to 'Delete product', product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } if @product.owner? %>
 
-<%= link_to 'Edit product', edit_product_path(@product), data: { turbo_frame: 'modal' } if @product.owner? %>
-<%# El link de delete lo hicimos convencionalmente como se hace un metodo destroy aunque no estamos buscadno nada en la base de datos,
-tambien se podia llamar un metodo que hiciera lo mismo que hace el metodo destroy pero lo dejamos asi por convención
-tampoco habria que pasarle parametros al otro metodo que hiciera lo mismo pero aca si se los pasamos por convención un metodo destroy necesita un parametro %>
-<%= link_to 'Delete product', product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } if @product.owner? %>
-<p>Seller:<%= link_to "#{@product.user.username}", user_path(@product.user.username) %></p>
+  <div class='w-2/5 ms-2 bg-neutral-600 rounded flex items-center justify-center'>
+    <p>Seller:<%= link_to "#{@product.user.username}", user_path(@product.user.username) %></p>
+  </div>
+</div>
+
 
 <%= turbo_frame_tag 'modal' %>
 <%= turbo_stream_from @product %> <%# Crea un canal con una room que apunta a product_id_del_producto %>
