@@ -53,7 +53,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
     assert_select('.title', products(:ps4).title)
     assert_select('.description', products(:ps4).description)
-    assert_select('.price', products(:ps4).price.to_s)
+    assert_select('.price', "$#{products(:ps4).price.to_s}")
   end
 
   test 'render a form for new product' do

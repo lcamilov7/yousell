@@ -23,7 +23,9 @@ class ProductsController < ApplicationController
     @pagy, @products = pagy_countless(FindProducts.new.call(product_params_index), items: 12)
   end
 
-  def show; end
+  def show
+    @user = product.user
+  end
 
   def new
     @product = Product.new

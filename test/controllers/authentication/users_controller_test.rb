@@ -21,7 +21,8 @@ class Authentication::UsersControllerTest < ActionDispatch::IntegrationTest
         user: {
           email: 'pepitoperez@hotmail.com',
           username: 'pepillo45',
-          password: 'passwordverysecure'
+          password: 'passwordverysecure',
+          number: '3075659899'
         }
       }
     end

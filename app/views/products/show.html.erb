@@ -7,11 +7,25 @@
   tampoco habria que pasarle parametros al otro metodo que hiciera lo mismo pero aca si se los pasamos por convención un metodo destroy necesita un parametro %>
   <%= link_to 'Delete product', product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } if @product.owner? %>
 
-  <div class='w-2/5 ms-2 bg-neutral-600 rounded flex items-center justify-center'>
-    <p>Seller:<%= link_to "#{@product.user.username}", user_path(@product.user.username) %></p>
-  </div>
-</div>
+  <% if Current.user != @product.user %>
+    <div class='w-2/5 sm:ms-2 bg-neutral-600 rounded flex flex-col items-center justify-center shadow'>
+      <h4 class='text-orange-500 text-2xl font-bold mb-3'>Product owner</h4>
+      <% if @user.photo.attached? %>
+        <%= image_tag(@user.photo, class: 'w-1/4 rounded-full my-2 shadow') %>
+      <% else %>
+        <img src="assets/avatar" alt="" class='w-1/4 rounded-full my-2'>
+      <% end %>
+      <p class='text-xl text-gray-200 my-2'><%= @user.username %></p>
+      <%= link_to 'More products from this user', user_path(@user.username), class: 'my-2 px-4 py-2 font-semibold text-sm bg-orange-500 hover:bg-orange-700 text-white rounded-2xl cursor-pointer shadow-sm' %><%# Aca pasamos es el username porque es lo quer ecibe asi lo dfinimos en routes %>
 
+      <div class='mt-2 flex gap-2'>
+        <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i>
+        <p class='text-gray-200'><%= @user.number %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= console %>
 
 <%= turbo_frame_tag 'modal' %>
 <%= turbo_stream_from @product %> <%# Crea un canal con una room que apunta a product_id_del_producto %>
