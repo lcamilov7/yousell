@@ -1,14 +1,8 @@
 <div class='flex flex-col justify-center items-center sm:flex-row h-full w-full'>
   <%= render partial: 'product_details', locals: { product: @product } %>
 
-  <%= link_to 'Edit product', edit_product_path(@product), data: { turbo_frame: 'modal' } if @product.owner? %>
-  <%# El link de delete lo hicimos convencionalmente como se hace un metodo destroy aunque no estamos buscadno nada en la base de datos,
-  tambien se podia llamar un metodo que hiciera lo mismo que hace el metodo destroy pero lo dejamos asi por convención
-  tampoco habria que pasarle parametros al otro metodo que hiciera lo mismo pero aca si se los pasamos por convención un metodo destroy necesita un parametro %>
-  <%= link_to 'Delete product', product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } if @product.owner? %>
-
   <% unless @product.owner? %>
-    <div class='sm:w-2/5 w-4/5 p-5 sm:ms-2 mb-3 bg-neutral-900 rounded flex flex-col items-center justify-center shadow relative'>
+    <div class='sm:w-2/5 w-4/5 p-5 my-3 sm:h-[486px] sm:ms-2 mb-3 bg-neutral-900 rounded flex flex-col items-center justify-center shadow relative'>
       <h4 class='text-orange-500 text-2xl font-bold mb-3'>Product owner</h4>
       <% if @user.photo.attached? %>
         <%= image_tag(@user.photo, class: 'w-[100px] h-[100px] rounded-full my-2 shadow object-cover') %>
