@@ -6,10 +6,12 @@ Category.destroy_all
 puts '### Database clear ###'
 
 puts '### Creating users ###'
-sara = User.create!(username: 'raticavivaz4', email: 'saraposada@gmail.com', password: 'testme4444', admin: true, country: 'CO', number: '3056575666') # No ponemos digest
-pepe = User.create!(username: 'erpepe06genial', email: 'erpepe06@hotmail.com', password: 'testme4444', country: 'ES', number: '3204547866')
+sara = User.create!(username: 'raticavivaz4', email: 'saraposada@gmail.com', password: 'testme4444', admin: true, country: 'CO', number: '3015766295') # No ponemos digest
+sara.photo.attach(io: File.open('app/assets/images/saraperfil.jpeg'), filename: 'saraperfil.jpeg')
+pepe = User.create!(username: 'lauritha99xd', email: 'erpepe06@hotmail.com', password: 'testme4444', country: 'ES', number: '3104546428')
+pepe.photo.attach(io: File.open('app/assets/images/erpepe.jpg'), filename: 'erpepe.jpg')
 luis = User.create!(username: 'lcamilov7', email: 'luiscamilov@hotmail.com', password: 'testme4444', country: 'CO', number: '3046760899')
-luis.photo.attach(io: File.open('app/assets/images/fotoVisa.jpg'), filename: 'fotoVisa.jpg')
+luis.photo.attach(io: File.open('app/assets/images/koala.jpg'), filename: 'koala.jpg')
 puts '### Users created ###'
 
 puts '### Creating categories ###'

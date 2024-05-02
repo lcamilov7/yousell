@@ -1,4 +1,4 @@
-<div class='flex flex-col justify-center sm:flex-row mt-12 h-4/5'>
+<div class='flex flex-col justify-center items-center sm:flex-row h-full w-full'>
   <%= render partial: 'product_details', locals: { product: @product } %>
 
   <%= link_to 'Edit product', edit_product_path(@product), data: { turbo_frame: 'modal' } if @product.owner? %>
@@ -7,11 +7,11 @@
   tampoco habria que pasarle parametros al otro metodo que hiciera lo mismo pero aca si se los pasamos por convención un metodo destroy necesita un parametro %>
   <%= link_to 'Delete product', product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } if @product.owner? %>
 
-  <% if Current.user != @product.user %>
-    <div class='w-2/5 sm:ms-2 bg-neutral-600 rounded flex flex-col items-center justify-center shadow'>
+  <% unless @product.owner? %>
+    <div class='sm:w-2/5 w-4/5 p-5 sm:ms-2 mb-3 bg-neutral-900 rounded flex flex-col items-center justify-center shadow relative'>
       <h4 class='text-orange-500 text-2xl font-bold mb-3'>Product owner</h4>
       <% if @user.photo.attached? %>
-        <%= image_tag(@user.photo, class: 'w-1/4 rounded-full my-2 shadow') %>
+        <%= image_tag(@user.photo, class: 'w-[100px] h-[100px] rounded-full my-2 shadow object-cover') %>
       <% else %>
         <img src="assets/avatar" alt="" class='w-1/4 rounded-full my-2'>
       <% end %>
@@ -22,10 +22,14 @@
         <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i>
         <p class='text-gray-200'><%= @user.number %></p>
       </div>
+      <div class='absolute top-3 right-3 rounded-full bg-neutral-700 w-10 h-10 flex items-center justify-center'>
+        <% if @user.country %>
+          <p class='font-bold text-lg text-gray-200'><%= @user.country %></p>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>
-<%= console %>
 
 <%= turbo_frame_tag 'modal' %>
 <%= turbo_stream_from @product %> <%# Crea un canal con una room que apunta a product_id_del_producto %>
