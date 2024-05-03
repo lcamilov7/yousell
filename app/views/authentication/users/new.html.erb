@@ -1,36 +1,54 @@
-<%= form_with model: @user do |f| %>
-  <div>
-    <% @user.errors.full_messages.each do |error| %>
-      <p><%= error %></p>
-    <% end %>
-  </div>
+<div class="father" data-controller='authenticate'>
+  <div class="container" data-authenticate-target='container'>
 
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email, required: true %>
-  </div>
+    <div class="form-container sign-up">
+      <%= form_with model: @user do |f| %>
+        <h2 class='form-title'>Create Account</h2>
+        <div>
+          <% @user.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+          <% end %>
+        </div>
 
-  <div>
-    <%= f.label :username %>
-    <%= f.text_field :username, required: true %>
-  </div>
+        <%= f.email_field :email, placeholder: 'Email', required: true %>
 
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password, required: true %>
-  </div>
+        <%= f.text_field :username, placeholder:'Username', required: true %>
 
-  <div class='rounded-2xl border-neutral-800 mb-4 w-full border-[1px] p-3 bg-neutral-600 text-gray-200'>
-    <%= f.label :photo %>
-    <%= f.file_field :photo %>
-  </div>
+        <%= f.password_field :password, placeholder: 'Password', required: true %>
 
-  <div>
-    <%= f.label :number %>
-    <%= f.text_field :number, required: true %>
-  </div>
+        <%= f.text_field :number, placeholder: 'Phone Number', required: true %>
 
-  <div>
-    <%= f.submit %>
+        <%= f.file_field :photo, class: 'fileinput' %>
+
+        <button type='submit'>Sign Up</button>
+      <% end %>
+    </div>
+
+    <div class="form-container sign-in">
+      <%= form_with(url: sessions_path) do |f| %>
+        <img src="assets/logo2" alt="logo" class='w-[60px] h-[60px]'>
+        <h2 class='form-title'>Log In</h2>
+        <%= f.text_field :login, placeholder: 'Email or Username', required: true %>
+
+        <%= f.password_field :password, placeholder: 'Password', required: true %>
+
+        <button type='submit'>Log In</button>
+      <% end %>
+    </div>
+
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-left">
+          <h2>Welcome Back</h2>
+          <p>Enter your credentials</p>
+          <button class="hiddened" data-action='click->authenticate#login'>Log In</button>
+        </div>
+        <div class="toggle-panel toggle-right">
+          <h2>Hello there!</h2>
+          <p>Fill your info to create an account</p>
+          <button class="hiddened" data-action='click->authenticate#signup'>Sign Up</button>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

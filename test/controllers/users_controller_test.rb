@@ -8,6 +8,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get user_url(@user.username)
 
     assert_response(:success)
-    assert_select('h2', 'raticavivaz4')
+    assert_select('h2', "raticavivaz4´s products (#{@user.products.count})")
   end
 end

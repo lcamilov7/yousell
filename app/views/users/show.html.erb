@@ -1,4 +1,8 @@
-<%= image_tag(@user.photo, class: 'h-[70px] w-[70px] object-cover mt-2 rounded-full') %>
+<% if @user.photo.attached? %>
+  <%= image_tag(@user.photo, class: 'h-[70px] w-[70px] object-cover mt-2 rounded-full') %>
+<% else %>
+  <img src="assets/avatar" alt="avatar" class='h-[70px] w-[70px] object-cover mt-2 rounded-full'>
+<% end %>
 <h2 class='my-2 text-xl font-bold text-orange-500'><%= @user.username %>´s products (<%= @user.products.count %>)</h2>
 
 <%#  Decimos de donde sacaremos ese turbo frame que es de products_path pero le pasamos un param favorites: true para

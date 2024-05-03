@@ -1,15 +1,1 @@
-<%= form_with(url: sessions_path) do |f| %>
-  <div>
-    <%= f.label :login %>
-    <%= f.text_field :login, required: true %>
-  </div>
-
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password, required: true %>
-  </div>
-
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+<%# Nos llevamos el form de new session para la vista de new user, para que ambos forms estén el la misma vista, la ruta para new session se podria quitar %>

@@ -7,19 +7,19 @@
 
   <%= image_tag(product.photo, class: 'rounded shadow object-cover w-[100%] h-[300px]') if product.photo.attached? %>
 
-  <% if @product.owner? %>
-    <div class="flex flex-col absolute absolute top-3 right-3 rounded-full w-10 h-10 flex items-center justify-center mt-4">
-      <%= link_to edit_product_path(@product), data: { turbo_frame: 'modal' } do %>
+  <% if product.owner? %>
+    <div class="flex flex-col items-center justify-center mt-4 absolute absolute top-3 right-3 rounded-full w-10 h-10">
+      <%= link_to edit_product_path(product), data: { turbo_frame: 'modal' } do %>
         <i class="fa-solid fa-pen-to-square text-2xl text-gray-200 my-3 hover:text-gray-800"></i>
       <% end %>
       <%# El link de delete lo hicimos convencionalmente como se hace un metodo destroy aunque no estamos buscadno nada en la base de datos,
       tambien se podia llamar un metodo que hiciera lo mismo que hace el metodo destroy pero lo dejamos asi por convención
       tampoco habria que pasarle parametros al otro metodo que hiciera lo mismo pero aca si se los pasamos por convención un metodo destroy necesita un parametro %>
-      <%= link_to product_path(@product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } do %>
+      <%= link_to product_path(product), data: { turbo_method: :delete, turbo_confirm: 'Delete product?' } do %>
         <i class="fa-solid fa-ban text-red-600 text-2xl mt-5 hover:text-red-800"></i>
       <% end %>
     </div>
   <% end %>
 
-  <%= render partial: 'favorite', locals: { product: @product } if @product.owner? == false %> <%# aca hay que pasar la variable como local para poder hacer el turbo stream lo podemos ver en favorites controller %>
+  <%= render partial: 'favorite', locals: { product: product } if product.owner? == false %> <%# aca hay que pasar la variable como local para poder hacer el turbo stream lo podemos ver en favorites controller %>
 </div>
