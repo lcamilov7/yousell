@@ -2,7 +2,7 @@
   <%= render partial: 'product_details', locals: { product: @product } %>
 
   <% unless @product.owner? %>
-    <div class='sm:w-2/5 w-4/5 p-5 my-3 sm:h-[486px] sm:ms-2 mb-3 bg-neutral-900 rounded flex flex-col items-center justify-center shadow relative'>
+    <div class='sm:w-2/5 w-4/5 p-5 my-3 sm:h-[486px] sm:ms-2 mb-3 bg-neutral-600 rounded flex flex-col items-center justify-center shadow relative'>
       <h4 class='text-orange-500 text-2xl font-bold mb-3'>Product owner</h4>
       <% if @user.photo.attached? %>
         <%= image_tag(@user.photo, class: 'w-[100px] h-[100px] rounded-full my-2 shadow object-cover') %>

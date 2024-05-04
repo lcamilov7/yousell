@@ -1,7 +1,7 @@
 class Authentication::SessionsController < ApplicationController
   skip_before_action :protect_pages
 
-  def new; end
+  # def new; end la eliminamos porque trasladamos el form de new session al form de new user para que se viera mas lindo
 
   def create
     @user = User.find_by("email = :login OR username = :login", { login: params[:login] })
@@ -10,7 +10,7 @@ class Authentication::SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to(products_path, notice: 'Logged In')
     else
-      redirect_to(new_session_path, alert: 'Wrong credentials')
+      redirect_to(new_user_path, alert: 'Wrong credentials')
     end
   end
 

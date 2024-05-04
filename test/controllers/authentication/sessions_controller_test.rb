@@ -6,7 +6,7 @@ class Authentication::SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should render new session form' do
-    get new_session_path
+    get new_user_path
     assert_response(:success)
   end
 

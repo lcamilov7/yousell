@@ -11,7 +11,7 @@ module Authentication
     end
 
     def protect_pages
-      redirect_to(new_session_path, alert: 'Not logged in') unless Current.user
+      redirect_to(new_user_path, alert: 'Not logged in') unless Current.user
     end
   end
 end

@@ -1,5 +1,5 @@
-<div id='<%= dom_id(product) %>' class='my-3 shadow sm:w-2/5 w-4/5 relative rounded bg-neutral-600 p-5 sm:me-2 flex flex-col justify-center items-center'> <%# este dom_id nos servira para turbosstream action cable %>
-  <h1 class='title font-bold text-2xl text-orange-500 text-center'><%= product.title %></h1>
+<div id='<%= dom_id(product) %>' class='my-3 shadow sm:w-2/5 w-4/5 relative rounded p-5 sm:me-2 flex flex-col justify-center items-center orange-gradient'> <%# este dom_id nos servira para turbosstream action cable %>
+  <h1 class='title font-bold text-2xl text-gray-200 text-center'><%= product.title %></h1>
   <span class='price font-bold text-gray-200 mt-2'>$<%= product.price %></span>
   <div class='text-gray-200 h-[50px] overflow-y-scroll w-full scroll-bar my-4 py-2'>
     <p class='description font-light text-sm text-center'><%= product.description %></p>
