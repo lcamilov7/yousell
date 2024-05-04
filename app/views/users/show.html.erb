@@ -1,10 +1,16 @@
-<div class='orange-gradient flex items-center rounded-tl-full rounded-bl-full h-[78px] my-3 sm:w-[99%]'>
-  <% if @user.photo.attached? %>
-    <%= image_tag(@user.photo, class: 'h-[70px] w-[70px] object-cover rounded-full ms-1 me-3 shadow') %>
-  <% else %>
-    <img src="assets/avatar" alt="avatar" class='h-[70px] w-[70px] object-cover mt-2 rounded-full'>
-  <% end %>
-  <h2 class='my-2 text-xl font-bold text-gray-200'><%= @user.username %>´s products (<%= @user.products.count %>)</h2>
+<div class='orange-gradient flex items-center justify-between rounded-tl-full rounded-bl-full rounded-tr-full rounded-br-full h-[78px] my-3 sm:w-[99%] mx-5 sm:mx-0'>
+  <div class='flex items-center'>
+    <% if @user.photo.attached? %>
+      <%= image_tag(@user.photo, class: 'h-[70px] w-[70px] object-cover rounded-full ms-1 me-3 shadow') %>
+    <% else %>
+      <img src="assets/avatar" alt="avatar" class='h-[70px] w-[70px] object-cover mt-2 rounded-full'>
+    <% end %>
+    <h2 class='my-2 text-xl font-bold text-gray-200'><%= @user.username %>´s products (<%= @user.products.count %>)</h2>
+  </div>
+  <div class='flex gap-2 me-5'>
+    <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i>
+    <p class='text-gray-200'><%= @user.number %></p>
+  </div>
 </div>
 <%#  Decimos de donde sacaremos ese turbo frame que es de products_path pero le pasamos un param favorites: true para
 filtrar en nuestro archivo de queries/find_products.rb productos cuando hay un param favorites %>
