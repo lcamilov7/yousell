@@ -1,0 +1,15 @@
+<%# implementar policies de autorizacion y de autenticacion %>
+<%= form_with(model: @user, url: user_path(@user.username), method: :patch)  do |f| %>  <%# Aqui es importantisimo decir la url: user_path(@user.username), method: :patch ya que si la dejamos por default sera una url user/3 osea el id pero nosotros estamos es trabajando con username no con id %>
+  <div>
+    <% @user.errors.full_messages.each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+  </div>
+
+  <%= f.email_field :email, placeholder: 'Email' %>
+  <%# <%= f.text_field :username, placeholder:'Username' %>
+  <%# <%= f.password_field :password, placeholder: 'Password' %>
+  <%= f.text_field :number, placeholder: 'Phone Number' %>
+  <%= f.file_field :photo %>
+  <button type='submit'>Update</button>
+<% end %>

@@ -5,11 +5,16 @@
     <% else %>
       <img src="assets/avatar" alt="avatar" class='h-[70px] w-[70px] object-cover mt-2 rounded-full'>
     <% end %>
-    <h2 class='my-2 text-xl font-bold text-gray-200'><%= @user.username %>´s products (<%= @user.products.count %>)</h2>
+    <h2 class='my-2 sm:text-xl text-sm font-bold text-gray-200'><%= @user.username %>´s products (<%= @user.products.count %>)</h2>
   </div>
-  <div class='flex gap-2 me-5'>
+  <div class='flex items-center gap-2 me-5'>
     <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i>
-    <p class='text-gray-200'><%= @user.number %></p>
+    <p class='text-gray-200 text-sm sm:text-lg'><%= @user.number %></p>
+    <% if @user == Current.user %>
+      <%= link_to edit_user_path(@user.username) do %> <%# NOTA  no pasamos edit_user_path(username: @user.username) ya que desde las routes ya sabemops que el param default es username %>
+        <i class="fa-solid fa-pen-to-square text-2xl text-gray-200 hover:text-gray-800 mx-2"></i>
+      <% end %>
+    <% end %>
   </div>
 </div>
 <%#  Decimos de donde sacaremos ese turbo frame que es de products_path pero le pasamos un param favorites: true para

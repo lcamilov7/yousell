@@ -10,7 +10,7 @@
   </div>
 
   <div>
-    <%= f.text_area :description, placeholder: 'Description', class: ' text-gray-200 rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200', rows: 5 %>
+    <%= f.text_area :description, placeholder: 'Description', class: ' text-gray-200 rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200', rows: 3 %>
   </div>
 
   <% if @product.new_record? %>
@@ -25,7 +25,6 @@
   </div>
 
   <div class='rounded-2xl border-neutral-800 mb-4 w-full border-[1px] p-3 bg-neutral-600 text-gray-200'>
-    <%= f.label :photo %>
     <%= f.file_field :photo %>
   </div>
 

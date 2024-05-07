@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :favorites, only: %i[index create destroy], param: :product_id # Asi el param id de siempre pasara a llamarse product_id es mejor y se entiende mejor, en el controlador de favorites buscaremos product por el param pasado al invocar un metodo del controlador favorites y el param será llamado product_id porq aca lo definimos asi, id es de default pero le cambiamos el nombre a product_id
   # ESTE SEGUNDO RESOURCES DE USERS VA AFUERA EL PRIMERO PORQUE EL PRIMERO SE DEDICA UNICAMENTE AUTENTICACION
-  resources :users, only: %i[show], path: '/user', param: :username # Asi el nombre del param sera username y no id, porque queremos buscar por username y no id
+  resources :users, only: %i[show edit update], path: '/user', param: :username # Asi el nombre del param sera username y no id, porque queremos buscar por username y no id
   resources :categories, except: :show
   resources :products, path: '/' # ahora /products es igual a /
   # delete 'products/:id', to: 'products#destroy'
