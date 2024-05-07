@@ -11,7 +11,7 @@
     <i class="fa-brands fa-whatsapp text-green-500 text-xl"></i>
     <p class='text-gray-200 text-sm sm:text-lg'><%= @user.number %></p>
     <% if @user == Current.user %>
-      <%= link_to edit_user_path(@user.username) do %> <%# NOTA  no pasamos edit_user_path(username: @user.username) ya que desde las routes ya sabemops que el param default es username %>
+      <%= link_to edit_user_path(@user.username), data: { turbo_frame: 'modal' } do %> <%# NOTA  no pasamos edit_user_path(username: @user.username) ya que desde las routes ya sabemops que el param default es username %>
         <i class="fa-solid fa-pen-to-square text-2xl text-gray-200 hover:text-gray-800 mx-2"></i>
       <% end %>
     <% end %>
@@ -20,3 +20,4 @@
 <%#  Decimos de donde sacaremos ese turbo frame que es de products_path pero le pasamos un param favorites: true para
 filtrar en nuestro archivo de queries/find_products.rb productos cuando hay un param favorites %>
 <%= turbo_frame_tag :products, src: products_path(user_id: @user.id) %><%#  Aca le decimos que renderice loq ue hay dentro del turbo frame tag :products que se encuentra en products_path osea el index de products, pasamos parametro de user_id: @user.id %>
+<%= turbo_frame_tag 'modal' %>

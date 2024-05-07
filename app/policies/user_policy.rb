@@ -3,10 +3,10 @@ class UserPolicy < BasePolicy
   # @item sale de BasePolicy clase padre, en este caso @item seria un usuario
 
   def edit
-    @item == Current.user
+    @item.current_user?
   end
 
   def update
-    @item == Current.user
+    @item.current_user?
   end
 end

@@ -31,4 +31,8 @@ class User < ApplicationRecord
   def admin?
     self.admin
   end
+
+  def current_user?
+    self == Current.user
+  end
 end

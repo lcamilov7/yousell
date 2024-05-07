@@ -1,15 +1,26 @@
-<%# implementar policies de autorizacion y de autenticacion %>
-<%= form_with(model: @user, url: user_path(@user.username), method: :patch)  do |f| %>  <%# Aqui es importantisimo decir la url: user_path(@user.username), method: :patch ya que si la dejamos por default sera una url user/3 osea el id pero nosotros estamos es trabajando con username no con id %>
-  <div>
-    <% @user.errors.full_messages.each do |error| %>
-      <p><%= error %></p>
-    <% end %>
-  </div>
+<%= turbo_frame_tag 'modal' do %>
+  <div data-controller='modal'>
+    <div data-action='click->modal#close' class='fixed z-10 w-full h-full top-0 left-0 bg-black bg-opacity-40'></div>
+    <div data-modal-target='sidebar' class='fixed top-0 right-0 z-20 w-1/2 sm:w-3/6 lg:w-2/6 h-full border-gray-200 border-l-[1px] overflow-y-scroll shadow flex flex-col ease-in-out duration-300 p-5 translate-x-full' style='background: transparent; backdrop-filter: blur(20px); scrollbar-width: thin; scrollbar-color: #14B8A6 white;'>
+      <div class='flex justify-start'><button data-action='click->modal#close'><i class="fa-solid fa-x text-red-600 mb-4"></i></button></div>
+      <h2 class='font-bold mb-4 text-orange-500'>Edit user</h2>
 
-  <%= f.email_field :email, placeholder: 'Email' %>
-  <%# <%= f.text_field :username, placeholder:'Username' %>
-  <%# <%= f.password_field :password, placeholder: 'Password' %>
-  <%= f.text_field :number, placeholder: 'Phone Number' %>
-  <%= f.file_field :photo %>
-  <button type='submit'>Update</button>
+      <%= form_with(model: @user, url: user_path(@user.username), method: :patch)  do |f| %>  <%# Aqui es importantisimo decir la url: user_path(@user.username), method: :patch ya que si la dejamos por default sera una url user/3 osea el id pero nosotros estamos es trabajando con username no con id %>
+        <div>
+          <% @user.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+          <% end %>
+        </div>
+
+        <%= f.email_field :email, placeholder: 'Email', class: 'text-gray-200 rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200' %>
+        <%# <%= f.text_field :username, placeholder:'Username' %>
+        <%# <%= f.password_field :password, placeholder: 'Password' %>
+        <%= f.text_field :number, placeholder: 'Phone Number', class: 'text-gray-200 rounded-2xl border-neutral-800 mb-4 w-full bg-neutral-600 placeholder-gray-200' %>
+        <div class='rounded-2xl border-neutral-800 mb-4 w-full border-[1px] p-3 bg-neutral-600 text-gray-200'>
+          <%= f.file_field :photo %>
+        </div>
+        <button type='submit' class="px-4 py-2 font-semibold text-sm bg-orange-500 hover:bg-orange-700 text-white rounded-2xl cursor-pointer shadow-sm">Update</button>
+      <% end %>
+    </div>
+  </div>
 <% end %>
